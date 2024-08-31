@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from datetime import datetime
+from scrape import scrape_stocks
 
 # print(__name__)
 
@@ -27,6 +28,12 @@ books = {
         "image_url": "https://cdn2-digiphoto.techbang.com/system/excerpt_images/9207/front/6470c572e810c05e1da083439550f5a2.jpg?1479452813",
     },
 }
+
+
+@app.route("/stocks")
+def get_stocks():
+    datas = scrape_stocks()
+    return render_template("stocks.html", stocks=datas)
 
 
 @app.route("/bmi/name=<name>&height=<h>&weight=<w>")
