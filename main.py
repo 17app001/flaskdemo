@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from datetime import datetime
-from scrape import scrape_stocks
+from scrape import scrape_stocks, scrape_pm25
 
 # print(__name__)
 
@@ -28,6 +28,18 @@ books = {
         "image_url": "https://cdn2-digiphoto.techbang.com/system/excerpt_images/9207/front/6470c572e810c05e1da083439550f5a2.jpg?1479452813",
     },
 }
+
+
+@app.route("/pm25")
+def get_pm25():
+    today = datetime.now()
+    columns, values = scrape_pm25()
+    data = {
+        "columns": columns,
+        "values": values,
+        "today": today.strftime("%Y/%m/%d %M:%H:%S"),
+    }
+    return render_template("pm25.html", data=data)
 
 
 @app.route("/stocks")
