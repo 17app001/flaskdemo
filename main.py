@@ -21,6 +21,11 @@ books = {
         "price": 499,
         "image_url": "https://im1.book.com.tw/image/getImage?i=https://www.books.com.tw/img/001/036/04/0010360466.jpg&v=62d695bak&w=348&h=348",
     },
+    4: {
+        "name": "飼養柯基教學",
+        "price": 1499,
+        "image_url": "https://cdn2-digiphoto.techbang.com/system/excerpt_images/9207/front/6470c572e810c05e1da083439550f5a2.jpg?1479452813",
+    },
 }
 
 
