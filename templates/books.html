@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>書店書頁</title>
+
+    <style>
+        body {
+            background-color: antiquewhite;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>目前書籍</h1>
+    <!-- {{books}} -->
+
+    {% for key in books %}
+    <h2 class="bookname">{{books[key].name}}</h2>
+    <div class="price">NT:{{books[key].price}}</div>
+    <!-- 輸出圖片連結 -->
+    <img src="{{books[key].image_url}}" alt="">
+    <hr>
+    {% endfor %}
+
+</body>
+
+</html>
