@@ -31,6 +31,30 @@
                 width: 90%;
             }
         }
+
+        #delay-sec {
+            width: 50px;
+
+        }
+
+        .panel1 {
+            width: 200px;
+            margin: 3px auto;
+            background-color: orange;
+            padding: 6px;
+            border-radius: 3px;
+        }
+
+        .button-style {
+            background-color: rgb(255, 170, 237);
+            border: 0;
+            width: 50px;
+            border-radius: 3px;
+        }
+
+        form {
+            margin: 6px 0px;
+        }
     </style>
 </head>
 
@@ -39,13 +63,21 @@
     <h3 style="color:blue">目前時間:<u>{{data["today"]}}</u></h3>
     <a href="/">回首頁</a>
     <a href="">重新讀取</a>
-    <form action="" method="POST">
-        <select name="sort" id="sort">
-            <option value="true">升</option>
-            <option value="false">降</option>
-        </select>
-        <button type="submit">排序</button>
-    </form>
+
+    <div class="panel1">
+        <input type="checkbox" name="" id="">
+        開啟
+        <input name="delay-sec" id="delay-sec" type="number">秒數
+        <form action="" method="POST">
+            <select name="sort" id="sort">
+                <option value="true">升</option>
+                <option value="false">降</option>
+            </select>
+            <button class="button-style" type="submit">排序</button>
+        </form>
+    </div>
+
+
     <table border="1">
         <thead>
             <tr>
@@ -64,7 +96,14 @@
             {% endfor %}
         </tbody>
     </table>
+    <script>
+        const sortBtn = document.querySelector("button");
+        console.log(sortBtn);
+        setInterval((() => {
+            window.location.reload();
+        }), 10000);
 
+    </script>
 </body>
 
 </html>
