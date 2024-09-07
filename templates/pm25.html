@@ -32,7 +32,7 @@
             }
         }
 
-        #delay-sec {
+        #reload-sec {
             width: 50px;
 
         }
@@ -65,9 +65,9 @@
     <a href="">重新讀取</a>
 
     <div class="panel1">
-        <input type="checkbox" name="" id="">
+        <input type="checkbox" name="" id="check-reload">
         開啟
-        <input name="delay-sec" id="delay-sec" type="number">秒數
+        <input name="" id="reload-sec" type="number">秒數
         <form action="" method="POST">
             <select name="sort" id="sort">
                 <option value="true">升</option>
@@ -97,11 +97,48 @@
         </tbody>
     </table>
     <script>
-        const sortBtn = document.querySelector("button");
-        console.log(sortBtn);
-        setInterval((() => {
-            window.location.reload();
-        }), 10000);
+        const checkReload = document.querySelector("#check-reload");
+        const reloadSecond = document.querySelector("#reload-sec");
+        const delaySecond = 60;
+
+
+        window.onload = function () {
+            console.log("reload!");
+            //讀取
+            checkReload.checked = sessionStorage.getItem("CheckReload") == "true";
+            reloadSecond.value = sessionStorage.getItem("ReloadSecond") ? sessionStorage.getItem("ReloadSecond")
+                : delaySecond;
+
+            SetUpdateInterval();
+        };
+
+        checkReload.addEventListener("change", () => {
+            //儲存         
+            sessionStorage.setItem("CheckReload", checkReload.checked);
+            SetUpdateInterval();
+        });
+
+        reloadSecond.addEventListener("input", () => {
+            checkReload.checked = false;
+            sessionStorage.setItem("CheckReload", checkReload.checked);
+            sessionStorage.setItem("ReloadSecond", reloadSecond.value);
+        });
+
+        let intervalId = null;
+        function SetUpdateInterval() {
+            if (checkReload.checked) {
+                console.log("start reload!");
+                let sec = Number(reloadSecond.value) * 1000;
+                // 取得對應Interval id
+                intervalId = setInterval((() => {
+                    window.location.reload();
+                }), sec);
+            } else {
+                // 清除Interval
+                clearInterval(intervalId);
+            }
+        }
+
 
     </script>
 </body>
