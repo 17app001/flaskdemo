@@ -18,12 +18,12 @@
         }
 
         th {
-            background-color: rgb(255, 106, 0);
+            background-color: rgb(119, 111, 255);
             color: white;
         }
 
         td {
-            background-color: rgba(255, 221, 3, 0.92);
+            background-color: rgba(190, 219, 244, 0.92);
         }
 
         @media screen and (max-width:1024px) {
@@ -37,7 +37,15 @@
 <body>
     <h1>全省PM2.5資訊</h1>
     <h3 style="color:blue">目前時間:<u>{{data["today"]}}</u></h3>
-    <a href="/">回首頁</a>
+    <a href="/">回首頁</a><br>
+
+    <form action="">
+        <select name="sort" id="sort">
+            <option value="true">升</option>
+            <option value="false">降</option>
+        </select>
+        <button type="submit">排序</button>
+    </form>
     <table border="1">
         <thead>
             <tr>
