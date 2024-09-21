@@ -11,6 +11,13 @@
 
 <body>
     <a href="/">回首頁</a>
+
+    <div id="highestSite">最高:</div>
+    <div id="highestPm25">最高數值:</div>
+    <div id="lowestSite">最低:</div>
+    <div id="lowestPm25">最低數值:</div>
+
+
     <h1>PM2.5圖形繪製</h1>
     <div id="main" style="width: 100%;height:400px;"></div>
     <div id="six" style="width: 100%;height:400px;"></div>
@@ -26,6 +33,11 @@
                 success: (data) => {
                     console.log(data);
                     drawChart(chart1, data["site"], data["pm25"], title = "全省pm2.5數據", "pm2.5");
+
+                    $("#highestSite").text(data["highest"][0]);
+                    $("#highestPm25").text(data["highest"][1]);
+                    $("#lowestSite").text(data["lowest"][0]);
+                    $("#lowestPm25").text(data["lowest"][1]);
                 }
             }
         );
@@ -42,8 +54,6 @@
                 }
             }
         );
-
-
 
         function drawChart(chart, xdata, ydata, title = "圖表", name = "數值", color = "#66cdaa") {
             var option = {
