@@ -16,11 +16,21 @@ def get_pm25_json():
     return json_data
 
 
+def convert_value(value):
+    try:
+        return eval(value)
+    except:
+        return None
+
+
 def scrape_pm25(sort=False, ascending=True):
     try:
         datas = requests.get(url).json()["records"]
         df = pd.DataFrame(datas)
-        df["pm25"] = df["pm25"].apply(lambda x: eval(x))
+        # 將非正常數值轉換成None
+        df["pm25"] = df["pm25"].apply(convert_value)
+        # 移除有None的數據
+        df = df.dropna()
         if sort:
             df = df.sort_values("pm25", ascending=ascending)
 
